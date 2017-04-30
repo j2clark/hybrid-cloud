@@ -16,7 +16,7 @@
     </properties>
 
     <modules>
-        <module>config</module>
+        <module>config/server</module>
         <module>eureka</module>
         <module>services/user</module>
         <module>clients/client1</module>
