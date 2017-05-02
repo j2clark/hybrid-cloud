@@ -73,6 +73,9 @@ My solution to this problem is to
         
 Issue 3: Autorun on initialization
 
+    Note bash.sh uses S3 to find latest version and copy to instance
+    This method relies on S3://j2clark/repo/eureka/latest.jar be available 
+
     Came up with several different solutions until I ran accross this blog: http://zoltanaltfatter.com/2016/12/17/spring-boot-application-on-ec2/
     This opened my eyes to spring documentation: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/deployment-install.html#deployment-service 
 
@@ -95,6 +98,20 @@ I created a new Security Group EurekaServerSecuriityGroup, opening port 8761 for
 
 Issue 5:  Autoscale Group + Elastic IP auto assignment
  
+Netflix docs talk about using Elastic IP to solve for temporal nature of EC2 Eureka instances
+This approach seems... cumbersome, at least for what I am trying to achievce at the moment
+I am going to use an ELB to solver for this for now, relying on the DNS name of the ELB for the client bootstrap.properties value
+    eureka.client.serviceUrl.defaultZone=http://internal-<elb instance>.<region>.elb.amazonaws.com:8761/eureka/
+ 
+1. Launched a Eureka instance 
+2. Create ELB instance which points to instance
+    I have created 2 different instances, 
+        one internal (port 8761 -> 8761)
+        one external (port 80 -> 8761)
+    Both work well, external facing will eventually be deleted
+3. Create Launch Configuration
+4. Create Autoscale group (to ensure we always have a Eureka server instance)
+5. TODO: modify configs to point to ELB dns name  
  
  
     

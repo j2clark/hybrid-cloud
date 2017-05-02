@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- looks for application property logging.file. If found, generates log file -->
+
     <!-- swap includes to disable console logging -->
     <!--<include resource="org/springframework/boot/logging/logback/file-appender.xml" />-->
 
