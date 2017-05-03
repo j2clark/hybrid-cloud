@@ -14,26 +14,27 @@ yum update -y
 # install apache httpd - only for web apps
 #yum install httpd -y
 
-# to install Oracle java 8
-# see https://gist.github.com/rtfpessoa/17752cbf7156bdf32c59
+# remove openjdk java - horrible performance
+yum remove java* -y
 
-# install openjdk java 8
-yum install java-1.8.0 -y
-# remove java 1.7
-yum remove java-1.7.0-openjdk -y
+# install Sun JDK 1.8
+wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" 'http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm'
+sudo rpm -i jdk-8u121-linux-x64.rpm
 
 #install awslogs [publish application logs to cloudwatch]
 #yum install awslogs -y
-
 
 # create the working directory
 mkdir /opt/${application}
 
 # create configuration specifying the used profile
-echo "RUN_ARGS=--spring.profiles.active=ec2" > /opt/${application}/${application}.conf
+#echo "RUN_ARGS=--spring.profiles.active=ec2" > /opt/${application}/${application}.conf
 
 # download the maven artifact from S3
 aws s3 cp s3://${bucket}/${application}-latest.jar /opt/${application}/${application}.jar
+
+# download env specific config from S3
+#aws s3 cp s3://${bucket}/conf/XYZ /opt/${application}/XYZ
 
 # copy appropriate awslogs configs from s3
 # set region to us-west-1
