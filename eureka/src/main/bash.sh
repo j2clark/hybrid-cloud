@@ -4,10 +4,6 @@
 # and /app directory has been created
 # For initialization from scratch, use bash.sh
 
-export s3_base=j2clark/repo
-export application=eureka
-export bucket=${s3_base}/${application}
-
 # install updates
 yum update -y
 
@@ -24,6 +20,11 @@ sudo rpm -i jdk-8u121-linux-x64.rpm
 #install awslogs [publish application logs to cloudwatch]
 #yum install awslogs -y
 
+export s3_base=j2clark/repo
+export application=eureka
+export bucket=${s3_base}/${application}
+
+
 # create the working directory
 mkdir /opt/${application}
 
@@ -31,7 +32,7 @@ mkdir /opt/${application}
 #echo "RUN_ARGS=--spring.profiles.active=ec2" > /opt/${application}/${application}.conf
 
 # download the maven artifact from S3
-aws s3 cp s3://${bucket}/${application}-latest.jar /opt/${application}/${application}.jar
+aws s3 cp s3://${bucket}/jar/${application}-latest.jar /opt/${application}/${application}.jar
 
 # download env specific config from S3
 #aws s3 cp s3://${bucket}/conf/XYZ /opt/${application}/XYZ
