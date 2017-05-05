@@ -27,5 +27,5 @@ http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.htm
 So many red-herrings trying to get this launched. Embarrassing actually.
 Still not sure if IAM Role BasicMicroserviceRole is required, need to validate
 Was able to run using:
-java -jar -Dspring.application.json='{"eureka.client.serviceUrl.defaultZone":"http://eureka.j2clark.pics:8761/eureka/"}' configserver.jar
+java -jar -Dspring.application.json='{"eureka.client.serviceUrl.defaultZone":"http://<eureka server>:<eureka port>/eureka/"}' configserver.jar
 which overrides default eureka url
