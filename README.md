@@ -28,3 +28,18 @@ TODO:
         "This is the swagger codegen project, which allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec. 
         Currently, the following languages/frameworks are supported"
         https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
+
+
+    Docker Maven plugin - generates a docker image as part of build
+    https://github.com/spotify/docker-maven-plugin
+    Discovered reference to it here: http://tech.asimio.net/2016/04/05/Microservices-using-Spring-Boot-Jersey-Swagger-and-Docker.html#create_project
+    
+    
+    Possible solution to sdk config issue (different package not picked up in autoscan)
+    @SpringBootApplication(scanBasePackages = {"com.j2clark", "com.xyz"})
+    
+    
+    OpenAPI Documentation
+    https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
+    
+    

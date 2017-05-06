@@ -20,6 +20,7 @@
         <module>eureka</module>
         <module>services/user</module>
         <module>clients/client1</module>
+        <module>lambdas/simple</module>
     </modules>
 
     <dependencyManagement>
